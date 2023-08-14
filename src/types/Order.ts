@@ -1,5 +1,13 @@
+import { Product } from './Product';
+
 export type Order = {
-  id?: number;
+  id: number;
   userId: number;
-  productId?: number;
+  productIds?: Product[];
+};
+
+export type GetAllOrders = {
+  id: number;
+  userId: number;
+  productIds?: number[];
 };

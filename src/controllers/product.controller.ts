@@ -9,12 +9,12 @@ async function create(req: Request, res: Response): Promise<Response> {
   if (serviceResponse.status !== 'SUCCESSFUL') {
     return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
   }
-  return res.status(201).json(serviceResponse.data);
+  return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
 }
 
-async function getProduct(req: Request, res: Response): Promise<Response> {
+async function getProduct(_req: Request, res: Response): Promise<Response> {
   const serviceResponse = await productsService.getProduct();
-  return res.status(201).json(serviceResponse.data);
+  return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
 }
 
 export default {
