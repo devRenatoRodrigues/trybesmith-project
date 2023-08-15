@@ -37,12 +37,24 @@ describe('ProductsController', function () {
         })
   
         await productController.create(req, res)
-  
         expect(res.status).to.have.been.calledWith(201);
         expect(res.json).to.have.been.calledWith(productMock.simulatedProductCreated);
       });
   });
   });
 
+  describe('when findAll products', function () {
+    it('findAll products successfully', async function () {
+      const serviceResponse = productMock.getAllProductsReturn
+      sinon.stub(productsService, 'getProduct')
+      .resolves({
+        status: 'SUCCESSFUL',
+        data: serviceResponse
+      })
 
+      await productController.getProduct(req, res)
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith(productMock.getAllProductsReturn);
+    });
+});
 });
