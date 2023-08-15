@@ -12,11 +12,14 @@ async function getOrders(): Promise<ServiceResponse<GetAllOrders[]>> {
     }],
   });
   
-  const orderArray: GetAllOrders[] = orders.map(({ dataValues }) => ({
-    id: dataValues.id,
-    userId: dataValues.userId,
-    productIds: dataValues.productIds?.map(({ id }) => id),
-  }));
+  const orderArray: GetAllOrders[] = orders.map(({ dataValues }) => {
+    const productIds = dataValues.productIds?.map(({ id }) => id);
+    return { 
+      id: dataValues.id,
+      userId: dataValues.userId,
+      productIds,
+    };
+  });
   
   return { 
     status: 'SUCCESSFUL', data: orderArray };
