@@ -13,6 +13,7 @@ const newProductSchema = Joi.object({
       'string.min':
        'UNPROCESSABLE_CONTENT|"price" length must be at least {#limit} characters long',
     }),
+  orderId: Joi.number().required(),
 });
 
 export default newProductSchema;

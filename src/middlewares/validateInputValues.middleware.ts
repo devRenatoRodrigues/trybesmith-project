@@ -3,9 +3,8 @@ import newProductSchema from './schemas/createProductSchema';
 import mapStatusHTTP from '../utils/mapStatusHTTP';
 
 const validateNewProduct = (req:Request, res: Response, next:NextFunction) => {
-  const { error } = newProductSchema.validate(req.body);  
-  console.log(error);
-  
+  const inputs = req.body;
+  const { error } = newProductSchema.validate(inputs);  
   if (error) {
     const [status, message] = error.message.split('|');
     return res.status(mapStatusHTTP(status)).json({ message });
