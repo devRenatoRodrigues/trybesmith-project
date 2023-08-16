@@ -8,15 +8,15 @@ async function getOrders(): Promise<ServiceResponse<GetAllOrders[]>> {
     include: [{
       model: ProductModel,
       as: 'productIds',
-      attributes: ['id'],
+      attributes: ['id', 'name', 'price', 'orderId'],
     }],
   });
-  
-  const orderArray: GetAllOrders[] = orders.map(({ dataValues }) => {
-    const productIds = dataValues.productIds?.map(({ id }) => id);
+  console.log('orders', orders[0].dataValues.productIds);
+  const orderArray: GetAllOrders[] = orders.map((order) => {
+    const productIds = order.dataValues.productIds?.map((product) => product.id);    
     return { 
-      id: dataValues.id,
-      userId: dataValues.userId,
+      id: order.dataValues.id,
+      userId: order.dataValues.userId,
       productIds,
     };
   });
