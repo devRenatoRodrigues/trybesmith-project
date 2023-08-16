@@ -13,6 +13,8 @@ describe('OrdersService', function () {
      const orders = orderMock.getAllOrdersDatabase
       .map(order => orderModel.build(order))
     // orderModel.build(orderMock.getAllOrdersDatabase)  
+    console.log('orders', orders);
+    
 
       sinon.stub(orderModel, 'findAll').resolves(orders);
 

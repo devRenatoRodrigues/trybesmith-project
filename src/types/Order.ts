@@ -9,5 +9,5 @@ export type Order = {
 export type GetAllOrders = {
   id: number;
   userId: number;
-  productIds?: number[];
+  productIds?: number[]
 };

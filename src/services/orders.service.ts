@@ -8,12 +8,11 @@ async function getOrders(): Promise<ServiceResponse<GetAllOrders[]>> {
     include: [{
       model: ProductModel,
       as: 'productIds',
-      attributes: ['id', 'name', 'price', 'orderId'],
+      attributes: ['id'],
     }],
   });
-  console.log('orders', orders[0].dataValues.productIds);
   const orderArray: GetAllOrders[] = orders.map((order) => {
-    const productIds = order.dataValues.productIds?.map((product) => product.id);    
+    const productIds = order.dataValues.productIds?.map((product) => product.id);
     return { 
       id: order.dataValues.id,
       userId: order.dataValues.userId,

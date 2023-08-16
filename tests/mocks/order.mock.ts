@@ -1,4 +1,6 @@
-const getAllOrdersDatabase = [
+import { Order } from "../../src/types/Order"
+
+const getAllOrdersDatabase: Order[] = [
     {
       id: 1,
       userId: 1,
@@ -9,28 +11,6 @@ const getAllOrdersDatabase = [
         orderId: 1
       },]
     },
-    {
-      id: 2,
-      userId: 3,
-      productIds: [{
-        id: 4,
-        name: "Armadura de Aquiles",
-        price: "1 peça de ouro",
-        orderId: 2
-      },]
-    },
-    {
-      id: 3,
-      userId: 2,
-      productIds: [
-        {
-          id: 5,
-          name: "Harpa de Dagda",
-          price: "15 peças de ouro",
-          orderId: 3
-        }
-      ]
-    }
   ]
 
   const getAllOrdersReturn = [
@@ -39,16 +19,6 @@ const getAllOrdersDatabase = [
       userId: 1,
       productIds:[1]
     },
-    {
-      id: 2,
-      userId: 3,
-      productIds: [4]
-    },
-    {
-      id: 3,
-      userId: 2,
-      productIds: [5]
-    }
   ]
 
 export default {
