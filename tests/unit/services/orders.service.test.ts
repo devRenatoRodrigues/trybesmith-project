@@ -13,14 +13,10 @@ describe('OrdersService', function () {
      const orders = orderMock.getAllOrdersDatabase
       .map(order => orderModel.build(order))
     // orderModel.build(orderMock.getAllOrdersDatabase)  
-    console.log('orders', orders);
-    
-
       sinon.stub(orderModel, 'findAll').resolves(orders);
 
 
       const serviceResponse = await orderService.getOrders()
-      console.log('serviceResponse',serviceResponse.data);
 
       expect(serviceResponse.status).to.eq('SUCCESSFUL');
       // expect(serviceResponse.data).to.deep.eq(orderMock.getAllOrdersReturn);
