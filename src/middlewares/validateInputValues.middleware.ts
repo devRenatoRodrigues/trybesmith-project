@@ -4,6 +4,7 @@ import mapStatusHTTP from '../utils/mapStatusHTTP';
 
 const validateNewProduct = (req:Request, res: Response, next:NextFunction) => {
   const inputs = req.body;
+
   const { error } = newProductSchema.validate(inputs);  
   if (error) {
     const [status, message] = error.message.split('|');

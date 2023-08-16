@@ -7,17 +7,17 @@ async function authMiddleware(req: Request, res: Response, next: NextFunction): 
   const { authorization } = req.headers;
 
   if (!authorization) {
-    return res.status(401).json({ message: 'Token é obrigatório' });
+    return res.status(401).json({ message: 'Token not found' });
   }
 
   try {
     const decoded = jwt.verify(authorization) as User;
-    const host = await UserModel.findOne({ where: { username: decoded.username } });
-    if (!host) return res.status(401).json({ message: 'Token inválido' });
+    const user = await UserModel.findOne({ where: { username: decoded.username } });
+    if (!user) return res.status(401).json({ message: 'Invalid token' });
 
     next();
   } catch (e) {
-    return res.status(401).json({ message: 'Token inválido' });
+    return res.status(401).json({ message: 'Invalid token' });
   }
 }
 

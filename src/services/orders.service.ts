@@ -1,6 +1,6 @@
 import OrderModel from '../database/models/order.model';
 import ProductModel from '../database/models/product.model';
-import { GetAllOrders } from '../types/Order';
+import { CreateNewOrder, GetAllOrders } from '../types/Order';
 import { ServiceResponse } from '../types/ServiceResponse';
 
 async function getOrders(): Promise<ServiceResponse<GetAllOrders[]>> {
@@ -24,6 +24,26 @@ async function getOrders(): Promise<ServiceResponse<GetAllOrders[]>> {
     status: 'SUCCESSFUL', data: orderArray };
 }
 
+async function create(newOrder: CreateNewOrder)
+  : Promise<ServiceResponse<CreateNewOrder>> {
+  const { productIds, userId } = newOrder;
+  
+  const createNewOrder = await OrderModel.create({ userId });
+  const { id } = createNewOrder.dataValues;
+
+  productIds.forEach(async (productId) => {
+    await ProductModel.update({ id }, { where: { id: productId } });
+  });
+  
+  return { 
+    status: 'CREATED',
+    data: {
+      userId: id,
+      productIds,
+    } };
+}
+
 export default {
   getOrders,
+  create,
 };
