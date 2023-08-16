@@ -1,10 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
+import mapStatusHTTP from '../utils/mapStatusHTTP';
 
 async function loginMiddleware(req: Request, res: Response, next: NextFunction): Promise<unknown> {
-  const { login } = req.body;
+  const { username, password } = req.body;
 
-  if (!login.username || !login.password) {
-    return { status: 'INVALID_DATA', data: { message: '"username" and "password" are required' } };
+  if (!username || !password) {
+    return res.status(mapStatusHTTP('INVALID_DATA'))
+      .json({ message: '"username" and "password" are required' });
   }
       
   next();

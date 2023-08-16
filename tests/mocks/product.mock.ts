@@ -1,5 +1,7 @@
 const invalidProductName = 'ma';
+const nameNumber = 13;
 const invalidProductPrice = 12;
+const invalidProductPriceLength = '13'
 
 const validProductName = "konoha headband"
 const validProductPrice = "10 ryō"
@@ -16,8 +18,31 @@ const invalidNameProductBody = {
     orderId: 5,
 };
 
+const nameNumberBody = {
+    name: nameNumber,
+    price: validProductPrice,
+    orderId: 5,
+};
+
+const invalidLengthProductPrice = {
+  name: validProductName,
+  price: invalidProductPriceLength,
+  orderId: 5,
+};
+
+const bodyWithoutName = {
+  price: validProductPrice,
+  orderId: 5,
+};
+
+const bodyWithoutPrice = {
+  name: validProductName,
+  orderId: 5,
+};
+
+
 const invalidPriceProductBody = {
-    name: invalidProductName,
+    name: validProductName,
     price: invalidProductPrice,
     orderId: 6,
 };
@@ -68,4 +93,8 @@ export default {
     invalidPriceProductBody,
     simulatedProductCreated,
     getAllProductsReturn,
+    nameNumberBody,
+    bodyWithoutName,
+    bodyWithoutPrice,
+    invalidLengthProductPrice
 }

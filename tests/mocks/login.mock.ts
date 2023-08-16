@@ -21,6 +21,8 @@ const hashPassword = '$2a$10$paFEwO0ys8IeyxvgLA53Ue.Eqb7KNclcXE3cuuNmnL0rwWZE.hf
 
   const messageInvalidLoginOrPassword = { message: 'Username or password invalid' }
 
+  const messageEmptyLoginOrPassword ={ message: '"username" and "password" are required' }
+
 export default {
     invalidPasswordBody,
     validLoginBody,
@@ -28,5 +30,6 @@ export default {
     emptyUsernameBody,
     existingUserWithHash,
     invalidUsernameBody,
-    messageInvalidLoginOrPassword
+    messageInvalidLoginOrPassword,
+    messageEmptyLoginOrPassword
 }
