@@ -128,8 +128,6 @@ describe('POST /orders', function () {
     const update = orderMock.updateProductReturn.map((p) => p )
     sinon.stub(ProductModel, 'update').resolves(update as any)
 
-    console.log(userExist);
-
     const response = await chai
       .request(app)
       .post('/orders')
