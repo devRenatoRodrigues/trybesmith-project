@@ -11,8 +11,8 @@ oderRouter.get('/orders', ordersController.getOrdes);
 oderRouter.post(
   '/orders',
   authMiddleware,
-  userExists,
   validateNewOrder,
+  userExists,
   ordersController.create,
 );
 

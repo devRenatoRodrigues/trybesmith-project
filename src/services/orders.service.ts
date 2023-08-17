@@ -38,7 +38,7 @@ async function create(newOrder: CreateNewOrder)
   return { 
     status: 'CREATED',
     data: {
-      userId: id,
+      userId,
       productIds,
     } };
 }
