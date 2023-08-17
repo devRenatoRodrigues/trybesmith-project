@@ -11,14 +11,11 @@ async function getOrders(): Promise<ServiceResponse<GetAllOrders[]>> {
       attributes: ['id'],
     }],
   });
-  const orderArray: GetAllOrders[] = orders.map((order) => {
-    const productIds = order.dataValues.productIds?.map((product) => product.id);
-    return { 
-      id: order.dataValues.id,
-      userId: order.dataValues.userId,
-      productIds,
-    };
-  });
+  const orderArray: GetAllOrders[] = orders.map((order) => ({ 
+    id: order.dataValues.id,
+    userId: order.dataValues.userId,
+    productIds: order.dataValues.productIds?.map((product) => product.id) || [],
+  }));
   
   return { 
     status: 'SUCCESSFUL', data: orderArray };
@@ -31,9 +28,11 @@ async function create(newOrder: CreateNewOrder)
   const createNewOrder = await OrderModel.create({ userId });
   const { id } = createNewOrder.dataValues;
 
-  productIds.forEach(async (productId) => {
+  const updatePoduct = productIds.map(async (productId) => {
     await ProductModel.update({ orderId: id }, { where: { id: productId } });
   });
+  
+  await Promise.all(updatePoduct);
   
   return { 
     status: 'CREATED',

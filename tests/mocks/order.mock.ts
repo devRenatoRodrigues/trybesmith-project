@@ -1,34 +1,47 @@
-import { Order } from "../../src/types/Order"
-
-const getAllOrdersDatabase: Order[] = [
-    {
+const getAllOrdersDatabase =  [
+  {
+    dataValues: {
       id: 1,
       userId: 1,
-      productIds:[ {
-        id: 1,
-        name: "Excalibur",
-        price: "10 peças de ouro",
-        orderId: 1
-      },]
+      productIds: [{ id: 2 }]
     },
-  ]
+    productIds: [{ id: 2 }]
+  }
+];
 
-  const productOrder = {
+const getAllOrdersDatabaseWithoutProduct =  [
+  {
+    dataValues: {
+      id: 1,
+      userId: 1,
+    },
+  }
+];
+
+  const productOrder = [{
     id: 1,
     name: "Excalibur",
     price: "10 peças de ouro",
     orderId: 1
-  }
+  }]
 
   const getAllOrdersReturn = [
     {
       id: 1,
       userId: 1,
-      productIds:[1]
+      productIds:[2]
     },
   ]
 
-  const validHeaderToken = 'Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJIYWdhciIsImlhdCI6MTY5MjI0MzE1Mn0.8v0IX2wOiVYQGYt9mepzNNLsbqpaG8FBuUmtS3cJGdU'
+  const getAllOrdersReturnWithoutProduct = [
+    {
+      id: 1,
+      userId: 1,
+      productIds: [],
+    },
+  ]
+
+  const validHeaderToken = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJIYWdhciIsImlhdCI6MTY5MjI4MjIyOX0.dyAc4A7xO8tOKhmkjFJAcG-NL5ezwLKb4lyvuiyiwfs'
   const invalidTokenHeader = "invalid_token"
 
   const validBodyCreate ={
@@ -59,6 +72,10 @@ const getAllOrdersDatabase: Order[] = [
     productIds: [1,5]
   }
 
+  const createProductReturn = {dataValues: { id: 7, userId: 1 }}
+
+  const updateProductReturn = [ [ 1 ], [ 1 ] ]
+
 
 export default {
   getAllOrdersDatabase,
@@ -71,5 +88,9 @@ export default {
   bodyWithEmptyArray,
   bodyWithInvalidProductIds,
   bodyWithInvalidUserId,
-  productOrder
+  productOrder,
+  getAllOrdersDatabaseWithoutProduct,
+  getAllOrdersReturnWithoutProduct,
+  createProductReturn,
+  updateProductReturn
 }

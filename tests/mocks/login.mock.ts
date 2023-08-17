@@ -23,6 +23,11 @@ const hashPassword = '$2a$10$paFEwO0ys8IeyxvgLA53Ue.Eqb7KNclcXE3cuuNmnL0rwWZE.hf
 
   const messageEmptyLoginOrPassword ={ message: '"username" and "password" are required' }
 
+  const validTokenAcess = {
+    id: 1,
+    username: 'Hagar',
+  }
+
 export default {
     invalidPasswordBody,
     validLoginBody,
@@ -31,5 +36,6 @@ export default {
     existingUserWithHash,
     invalidUsernameBody,
     messageInvalidLoginOrPassword,
-    messageEmptyLoginOrPassword
+    messageEmptyLoginOrPassword,
+    validTokenAcess
 }

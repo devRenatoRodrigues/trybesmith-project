@@ -10,22 +10,27 @@ describe('OrdersService', function () {
 
   describe('when findAll orders', function () {
 
-    it('product created successfully', async function () {
-     const orders = orderMock.getAllOrdersDatabase
-      .map(order => orderModel.build(order))
-      const products = ProductModel.build(orderMock.productOrder)
-    // orderModel.build(orderMock.getAllOrdersDatabase)  
-      sinon.stub(orderModel, 'findAll').resolves(orders);
-      sinon.stub(ProductModel, 'findOne').resolves(products);
+    it('find all orders when product id exists', async function () {
+      sinon.stub(orderModel, 'findAll').resolves(orderMock.getAllOrdersDatabase as any);
+      sinon.stub(ProductModel, 'findAll').resolves(orderMock.getAllOrdersDatabase[0].productIds as any);
 
       const serviceResponse = await orderService.getOrders()
 
       expect(serviceResponse.status).to.eq('SUCCESSFUL');
       expect(serviceResponse.data).to.be.an('array');
-      expect(serviceResponse.data).to.have.lengthOf(orders.length);
-      // expect(serviceResponse.data).to.deep.eq(orderMock.getAllOrdersReturn);
-      // expect(serviceResponse.data).to.have.property('productIds');
+      expect(serviceResponse.data).to.deep.eq(orderMock.getAllOrdersReturn);
     });
-});
+    });
+    it('find all orders when product id is empty', async function () {
+        sinon.stub(orderModel, 'findAll').resolves(orderMock.getAllOrdersDatabaseWithoutProduct as any);
+  
+        const serviceResponse = await orderService.getOrders()
+      
+        expect(serviceResponse.status).to.eq('SUCCESSFUL');
+        expect(serviceResponse.data).to.be.an('array');
+        expect(serviceResponse.data).to.deep.eq(orderMock.getAllOrdersReturnWithoutProduct);
+  
+      });
+      });
+  
 
-});

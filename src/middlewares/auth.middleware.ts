@@ -15,6 +15,7 @@ async function authMiddleware(req: Request, res: Response, next: NextFunction): 
 
   try {
     const decoded = jwt.verify(validToken) as User;
+    
     const user = await UserModel.findOne({ where: { username: decoded.username } });
     if (!user) return res.status(401).json({ message: 'Invalid token' });
 
