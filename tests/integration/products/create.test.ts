@@ -3,6 +3,7 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../src/app'
 import productMock from '../../mocks/product.mock'
+import ProductModel from '../../../src/database/models/product.model';
 
 chai.use(chaiHttp);
 
@@ -85,6 +86,25 @@ describe('POST /products', function () {
         {
           message: "\"price\" length must be at least 3 characters long"
         }
+    );
+  });
+
+  it('when passing a valid product body', async () => {
+    sinon.stub(ProductModel, 'create')
+      .resolves(ProductModel.build(productMock.simulatedProductCreated));
+
+    const response = await chai
+      .request(app)
+      .post('/products')
+      .send(productMock.validProductBody);
+
+    expect(response.status).to.equal(201);
+    expect(response.body).to.be.deep.equal(
+      {
+        id: 6,
+        name: "konoha headband",
+        price: "10 ryō"
+      }
     );
   });
 });

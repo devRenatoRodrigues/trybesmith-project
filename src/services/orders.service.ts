@@ -32,7 +32,7 @@ async function create(newOrder: CreateNewOrder)
   const { id } = createNewOrder.dataValues;
 
   productIds.forEach(async (productId) => {
-    await ProductModel.update({ id }, { where: { id: productId } });
+    await ProductModel.update({ orderId: id }, { where: { id: productId } });
   });
   
   return { 

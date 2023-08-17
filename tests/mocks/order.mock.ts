@@ -13,6 +13,13 @@ const getAllOrdersDatabase: Order[] = [
     },
   ]
 
+  const productOrder = {
+    id: 1,
+    name: "Excalibur",
+    price: "10 peças de ouro",
+    orderId: 1
+  }
+
   const getAllOrdersReturn = [
     {
       id: 1,
@@ -21,7 +28,7 @@ const getAllOrdersDatabase: Order[] = [
     },
   ]
 
-  const validHeaderToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJIYWdhciIsImlhdCI6MTY5MjIyODkyNX0.pe1IwQou_FJxo8z5jhNx7kvxsj3LJUiq2CAMC4m9Tks'
+  const validHeaderToken = 'Barer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJIYWdhciIsImlhdCI6MTY5MjI0MzE1Mn0.8v0IX2wOiVYQGYt9mepzNNLsbqpaG8FBuUmtS3cJGdU'
   const invalidTokenHeader = "invalid_token"
 
   const validBodyCreate ={
@@ -63,5 +70,6 @@ export default {
   BodyWithoutProductIdsCreate,
   bodyWithEmptyArray,
   bodyWithInvalidProductIds,
-  bodyWithInvalidUserId
+  bodyWithInvalidUserId,
+  productOrder
 }

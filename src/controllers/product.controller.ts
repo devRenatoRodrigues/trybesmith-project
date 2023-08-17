@@ -6,9 +6,6 @@ async function create(req: Request, res: Response): Promise<Response> {
   const { name, price, orderId } = req.body;
   const serviceResponse = await productsService.create({ name, price, orderId,
   });
-  if (serviceResponse.status !== 'SUCCESSFUL') {
-    return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
-  }
   return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
 }
 
